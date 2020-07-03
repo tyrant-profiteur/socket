@@ -17,6 +17,9 @@ import java.net.Socket;
         this.socket = socket;
     }
 
+    /**
+     * 服务器异步处理数据
+     */
     @Override
     public void run() {
         super.run();
