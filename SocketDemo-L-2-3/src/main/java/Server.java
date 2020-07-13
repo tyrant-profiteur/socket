@@ -14,7 +14,7 @@ public class Server {
         System.out.println("服务器信息：" + server.getInetAddress() + " p:"+ server.getLocalPort());
 
         //等待客户端连接
-        for (;;){
+        for (;;){ 
             //得到客户端
             Socket client = server.accept();
             //客户端构建异步线程
