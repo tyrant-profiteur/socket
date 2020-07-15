@@ -1,7 +1,8 @@
+package advance;
+
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.SocketException;
 import java.util.UUID;
 
 /**
@@ -34,7 +35,7 @@ public class NewUDPProvider {
         @Override
         public void run() {
             super.run();
-            System.out.println("UDPProvider started.");
+            System.out.println("base.UDPProvider started.");
 
             try {
                 //作为接收者，指定一个端口用于数据接收
@@ -53,7 +54,7 @@ public class NewUDPProvider {
                     int port = receivePacket.getPort();
                     int dataLen = receivePacket.getLength();
                     String data = new String(receivePacket.getData(), 0, dataLen);
-                    System.out.println("UDPProvider receive from ip:" + ip + "\tport:"
+                    System.out.println("base.UDPProvider receive from ip:" + ip + "\tport:"
                             + port + "\tdata:" + data);
 
                     //解析端口号
@@ -76,7 +77,7 @@ public class NewUDPProvider {
             }finally {
                 ds.close();
             }
-            System.out.println("UDPProvider finished.");
+            System.out.println("base.UDPProvider finished.");
         }
 
         private void close() {

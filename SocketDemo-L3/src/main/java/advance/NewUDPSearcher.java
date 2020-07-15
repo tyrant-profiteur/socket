@@ -1,3 +1,5 @@
+package advance;
+
 import java.io.IOException;
 import java.net.*;
 import java.util.ArrayList;
@@ -12,7 +14,7 @@ import java.util.concurrent.CountDownLatch;
 public class NewUDPSearcher {
     private static final int LISTEN_PORT = 30000;
     public static void main(String[] args) throws IOException, InterruptedException {
-        System.out.println("UDPSearcher started.");
+        System.out.println("base.UDPSearcher started.");
         Listener listener = listen();
         //发送广播
         setBroadcast();
@@ -25,11 +27,11 @@ public class NewUDPSearcher {
         }
 
         //完成
-        System.out.println("UDPSearcher finished.");
+        System.out.println("base.UDPSearcher finished.");
     }
 
     private static Listener listen() throws InterruptedException {
-        System.out.println("UDPSearcher start listen.");
+        System.out.println("base.UDPSearcher start listen.");
         CountDownLatch countDownLatch = new CountDownLatch(1);
         Listener listener = new Listener(LISTEN_PORT,countDownLatch);
         listener.start();
@@ -39,7 +41,7 @@ public class NewUDPSearcher {
     }
 
     private static void setBroadcast()throws IOException {
-        System.out.println("UDPSearcher listener started.");
+        System.out.println("base.UDPSearcher listener started.");
 
         //作为搜索方（发送方），端口系统自动分配
         DatagramSocket ds = new DatagramSocket();
@@ -57,7 +59,7 @@ public class NewUDPSearcher {
         ds.send(responsePacket);
         ds.close();
 
-        System.out.println("UDPSearcher listener finished.");
+        System.out.println("base.UDPSearcher listener finished.");
     }
 
     private static class Device{
@@ -114,7 +116,7 @@ public class NewUDPSearcher {
                     int port = receivePacket.getPort();
                     int dataLen = receivePacket.getLength();
                     String data = new String(receivePacket.getData(),0,dataLen);
-                    System.out.println("UDPProvider receive from ip:" + ip + "\tport:"
+                    System.out.println("base.UDPProvider receive from ip:" + ip + "\tport:"
                             +port + "\tdata:" + data);
 
                     String sn = MessageCreator.parseSn(data);
@@ -128,7 +130,7 @@ public class NewUDPSearcher {
             }finally {
                 close();
             }
-            System.out.println("UDPSearcher finished.");
+            System.out.println("base.UDPSearcher finished.");
 
         }
 
